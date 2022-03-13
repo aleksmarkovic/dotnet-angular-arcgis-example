@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title">Enter data!</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form #infoForm="ngForm" (ngSubmit)="onSubmit(infoForm.value)">
+    <button type="button" class="btn btn-primary mt-1" (click)="onAddInfo()">Add</button>
+    <div class="row mt-1" *ngFor="let info of getVehicle().additionalInfo | keyvalue; let i = index" [attr.data-index]="i">
+      <div class="form-group col-md-2">
+        <input type="text" name="key-{{i}}" class="form-control" [ngModel]="!info.key.includes('tmp') ? info.key : ''">
+      </div>
+      _
+      <div class="form-group col-md-6">
+        <input type="text" name="value-{{i}}" class="form-control" [ngModel]=info.value>
+      </div>
+    </div>
+    <p style="font-size: 14px">*To remove a field, delete the content of the key and submit.</p>
+    <button type="submit" class="btn btn-primary mt-1 me-1">Submit</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+
+

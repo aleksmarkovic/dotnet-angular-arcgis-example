@@ -1,0 +1,27 @@
+<div>
+  <div class="mb-3 row ms-1">
+    <label for="table-filtering-search" class="col-sm-auto col-form-label">Search Vehicle:</label>
+    <input id="table-filtering-search" class="form-control col-sm-auto" type="text" [ngModel]="search" (ngModelChange)="onSearch($event)">
+  </div>
+
+  <table *ngIf="vehicles" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Brand</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehicle of vehicles">
+        <td>{{ vehicle.brand }}</td>
+        <td>{{ vehicle.name}}</td>
+        <td>
+          <button class="btn btn-primary me-1" (click)="onTrack(vehicle)">Track</button>
+          <button class="btn btn-primary me-1" (click)="onAddInfo(vehicle)">Additional Info</button>
+          <button class="btn btn-danger" (click)="onDelete(vehicle)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-primary mt-1 ms-3" (click)="onAdd()">Add Vehicle</button>
+</div>
